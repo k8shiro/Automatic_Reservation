@@ -129,17 +129,25 @@ SearchButton.click();
 // 3秒停止
 WScript.Sleep( 3000 );
 
-var RoomButton = IEApp.document.getElementsByClassName( "resrcitem" ).item(0).parentNode;
+var RoomButton = IEApp.document.getElementsByClassName( "resrcitem" ).item(0);
 
-WScript.Echo( RoomButton.outerHTML　);
-RoomButton.dbclick();
+//部屋選択
+var event = IEApp.document.createEvent("MouseEvents");
+event.initMouseEvent("mousedown", true, true, RoomButton, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+RoomButton.dispatchEvent(event);
+
+//ダブルクリック
+var event = IEApp.document.createEvent("MouseEvents"); 
+event.initMouseEvent("dblclick", true, true, RoomButton, 0, 0, 0, 0, 0, false, false, false, false, 0, null); 
+RoomButton.dispatchEvent(event);
+
 // 0.1秒停止
 WScript.Sleep( 100 );
 RoomButton.click();
 
 
 /*-----------------------------------------------------------*/
-WScript.Echo( SearchForm.outerHTML　);
+WScript.Echo(SearchForm.outerHTML);
 //  ページの読み込みが終わるまで処理を止める　その後3秒停止
 while( IEApp.Busy )
     WScript.Sleep( 500 ); 
@@ -148,7 +156,7 @@ WScript.Sleep( 3000 );
 //  Internet Explorerを終了
 IEApp.Quit();
 
-WScript.Echo( "終了" );
+WScript.Echo("終了");
 
 //  オブジェクトを解放
 IEApp = null;
