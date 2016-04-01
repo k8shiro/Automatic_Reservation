@@ -1,20 +1,20 @@
-//設定が必要な項目
-var user_name = "ユーザID";
-var user_password = "パスワード";
-var t_url = "サイトURL";
-var t_r_url = "予約ページURL";
-var room_name = "部屋名";
+var user_name = ""
+var user_password = ""
+
+var t_url = "";
+var t_r_url = "";
+var room_name = "";
 
 //予約の情報
 var title = "テスト"
-var startyear = "2015";
-var startmonth = "12";
-var startday = "20";
+var startyear = "2016";
+var startmonth = "3";
+var startday = "27";
 var starthour = "12";
 var startminute = "0";
-var endyear = "2015";
-var endmonth = "12";
-var endday = "20";
+var endyear = "2016";
+var endmonth = "3";
+var endday = "27";
 var endhour = "13";
 var endminute = "0";
 
@@ -147,12 +147,31 @@ RoomButton.click();
 
 
 /*-----------------------------------------------------------*/
-WScript.Echo(SearchForm.outerHTML);
 //  ページの読み込みが終わるまで処理を止める　その後3秒停止
 while( IEApp.Busy )
     WScript.Sleep( 500 ); 
 WScript.Sleep( 3000 );
 
+
+var room_submit = IEApp.document.getElementById( "selector_commit" );
+room_submit.click();
+
+/*-----------------------------------------------------------*/
+//  ページの読み込みが終わるまで処理を止める　その後3秒停止
+while( IEApp.Busy )
+    WScript.Sleep( 500 ); 
+WScript.Sleep( 3000 );
+
+
+
+
+var regist= IEApp.document.getElementsByName( "regist" ).item(0);
+regist.click();
+
+
+while( IEApp.Busy )
+    WScript.Sleep( 500 ); 
+WScript.Sleep( 3000 );
 //  Internet Explorerを終了
 IEApp.Quit();
 
@@ -160,5 +179,3 @@ WScript.Echo("終了");
 
 //  オブジェクトを解放
 IEApp = null;
-
-
